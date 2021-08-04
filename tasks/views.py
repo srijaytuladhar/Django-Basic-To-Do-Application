@@ -6,7 +6,7 @@ from .forms import *
 
 # Create your views here.
 
-
+# for root directory
 def index(request):
     tasks = Task.objects.all()
 
@@ -21,6 +21,7 @@ def index(request):
     context = {'tasks':tasks, 'form':form}
     return render(request, 'tasks/list.html', context)
 
+# to update task
 def updateTask(request, pk):
     task = Task.objects.get(id=pk)
     form = TaskForm(instance=task)
@@ -33,7 +34,7 @@ def updateTask(request, pk):
     context = {'form':form}
     return render(request, 'tasks/update_task.html', context)
 
-
+# to delete task
 def deleteTask(request, pk):
     item = Task.objects.get(id=pk)
     if request.method == 'POST':
